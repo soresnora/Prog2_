@@ -127,6 +127,8 @@ class Ui_Belepteto_rendszer(object):
                 raise cl.HianyzoAdat('rendszám')
             if rendszam == 'ABC123':
                 raise cl.RendszamHiba()
+            if len(rendszam)!=6:
+                raise cl.RendszamFormatumHiba()
             if rendszam[0:1] not in self.abc:
                 raise cl.RendszamFormatumHiba()
             if rendszam[1:2] not in self.abc:
@@ -182,6 +184,7 @@ class Ui_Belepteto_rendszer(object):
             msg.setIcon(QtWidgets.QMessageBox.Warning)
             msg.setText("A rendszámot a mintaformátumnak megfelelően adja meg!  (pl: ABC123)")
             msg.exec()
+
 
     def szerkesztfv(self,adat):
         if not self.kijelzo.currentItem():
